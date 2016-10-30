@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 		<title th:text="#{home.title}">Videoshop</title>
 	</head>
 <body>
@@ -19,22 +18,47 @@
 				<li><a href="catalog.html">Dvd Katalog</a></li>
 				<li><a href="catalog.html">Blu-ray Katalog</a></li>
 				<li><a href="basket.html">Warenkorb</a></li>
-				<li class="loginlogout"><a href="login">Login</a></li>
-				<li class="loginlogout"><a href="logout">Logout</a></li>
+				<li><a href="wishlist.html">Wunschliste</a></li>
+				<li class="loginlogout"><a href="@{/login}">Login</a></li>
+				<li class="loginlogout"><a href="@{/logout}">Logout</a></li>
 			</ul>
 		</nav>
 		
 		<div class="content">
-			<h1>Login page</h1>
-	        <p th:if="${loginError}">Wrong user or password</p>
-	        <form th:action="@{/login}" method="post">
-	            <label for="username">Username</label>:
-	            <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-	            <label for="password">Password</label>:
-	            <input type="password" id="password" name="password" /> <br />
-	            <input type="submit" value="Log in" />
-	        </form>
-		</div>
-	</div>
+<div th:unless="${wishlist.empty}">
+				<table>
+					<caption th:text="#{wishlist.title}">Wishlist</caption>
+					<thead>
+						<tr>
+							<th th:text="#{wishlist.movieTitle}">Titel</th>
+							<th th:text="#{wishlist.price}">Preis</th>
+						</tr>
+					</thead>
+					<tbody th:remove="all-but-first">
+
+						<tr th:each="item : ${wishlist} ">
+							<td th:text="${item.productName}">Last Action Hero</td>
+							<td th:text="${item.price}">10 Euro</td>
+						</tr>
+						<tr>
+							<td>Last Action Hero</td>
+							<td>10 Euro</td>
+						</tr>
+						<tr>
+							<td>Last Action Hero</td>
+							<td>10 Euro</td>
+						</tr>
+						<tr>
+							<td>Last Action Hero</td>
+							<td>10 Euro</td>
+						</tr>
+
+					</tbody>
+				</table>
+				</div>
+							<p th:if="${wishlist.empty}" th:text="#{wishlist.empty}">Ihre Wunschliste enthält keine Titel</p>
+				
+				</div>	
+				</div>
 </body>
 </html>

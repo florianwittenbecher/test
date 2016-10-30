@@ -83,4 +83,12 @@ class ShopController {
 		model.addAttribute("registrationForm", new RegistrationForm());
 		return "register";
 	}
+
+	@RequestMapping("/wishlist")
+	public String wishlist(Model model) {
+
+		//model.addAttribute("stock", inventory.findAll());
+
+		return "wishlist";
+	}
 }
