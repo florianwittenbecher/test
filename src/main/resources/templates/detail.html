@@ -31,7 +31,7 @@
 					<input	type="submit" value="Zum Warenkorb hinzufügen" />
 				</form>
 				<form method="post" action="/wishlist">
-				
+					<input type="hidden" name="pid" value="0" th:value="${disc.id}" /> 
 					<input	type="submit" value="Zur Wunschliste hinzufügen" />
 				</form>
 			</div>

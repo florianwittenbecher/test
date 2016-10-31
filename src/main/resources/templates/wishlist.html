@@ -25,40 +25,35 @@
 		</nav>
 		
 		<div class="content">
-<div th:unless="${wishlist.empty}">
+		<div th:unless="${lengthWishlist==0}">
 				<table>
-					<caption th:text="#{wishlist.title}">Wishlist</caption>
+					<caption>Wunschliste</caption>
 					<thead>
 						<tr>
-							<th th:text="#{wishlist.movieTitle}">Titel</th>
-							<th th:text="#{wishlist.price}">Preis</th>
+							<th>Titel</th>
 						</tr>
 					</thead>
 					<tbody th:remove="all-but-first">
 
-						<tr th:each="item : ${wishlist} ">
-							<td th:text="${item.productName}">Last Action Hero</td>
-							<td th:text="${item.price}">10 Euro</td>
+						<tr th:each="i : ${#numbers.sequence(0, wishlist.lengthWishlist() -1)}">
+							<td th:text="${wishlist.getWishlist(i)}">Last Action Hero</td>
 						</tr>
 						<tr>
 							<td>Last Action Hero</td>
-							<td>10 Euro</td>
 						</tr>
 						<tr>
 							<td>Last Action Hero</td>
-							<td>10 Euro</td>
 						</tr>
 						<tr>
 							<td>Last Action Hero</td>
-							<td>10 Euro</td>
 						</tr>
 
 					</tbody>
 				</table>
+					</div>
+
+			<p th:if="${lengthWishlist==0}" th:text="#{lengthWishlist==0}">Leer</p>
 				</div>
-							<p th:if="${wishlist.empty}" th:text="#{wishlist.empty}">Ihre Wunschliste enthält keine Titel</p>
-				
-				</div>	
 				</div>
 </body>
 </html>
